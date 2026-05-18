@@ -1,0 +1,287 @@
+/* ============================================================
+   style.css  —  All visual styling for the Weather App
+   ============================================================ */
+
+/* ---------- RESET & BASE ---------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #1a1f2e;
+  color: #ffffff;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* ---------- MAIN APP CONTAINER ---------- */
+.app {
+  display: flex;
+  width: 100%;
+  max-width: 1100px;
+  min-height: 600px;
+  background: #1e2433;
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+/* ============================================================
+   LEFT SIDEBAR
+   ============================================================ */
+.sidebar {
+  width: 80px;
+  background: #161b28;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 0;
+  gap: 32px;
+}
+
+.sidebar-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  opacity: 0.4;
+  transition: opacity 0.2s;
+}
+
+.sidebar-icon.active { opacity: 1; }
+.sidebar-icon:hover  { opacity: 0.8; }
+
+.sidebar-icon span {
+  font-size: 10px;
+  color: #aaaaaa;
+}
+
+.sidebar-icon svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: #ffffff;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ============================================================
+   MAIN PANEL
+   ============================================================ */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 28px;
+  gap: 20px;
+}
+
+/* Search bar */
+.search-bar {
+  display: flex;
+  gap: 10px;
+}
+
+.search-bar input {
+  flex: 1;
+  background: #252d3d;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 18px;
+  color: #ffffff;
+  font-size: 14px;
+  outline: none;
+}
+
+.search-bar input::placeholder { color: #666666; }
+.search-bar input:focus { outline: 2px solid #3a7bd5; }
+
+.search-bar button {
+  background: #3a7bd5;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 20px;
+  color: #ffffff;
+  font-size: 14px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+
+.search-bar button:hover { background: #2e63b0; }
+
+/* Status messages */
+.error-msg {
+  color: #e74c3c;
+  font-size: 13px;
+  text-align: center;
+  display: none;
+}
+
+.status-msg {
+  text-align: center;
+  color: #8a95b0;
+  font-size: 14px;
+  padding: 20px 0;
+}
+
+/* Weather content wrapper */
+#weatherContent {
+  display: none;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Hero (city + big temperature) */
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hero-left h2 {
+  font-size: 36px;
+  font-weight: 700;
+}
+
+.hero-left .rain-chance {
+  font-size: 13px;
+  color: #8a95b0;
+  margin-top: 4px;
+}
+
+.hero-left .big-temp {
+  font-size: 64px;
+  font-weight: 700;
+  margin-top: 10px;
+}
+
+.hero-right .weather-emoji {
+  font-size: 90px;
+  line-height: 1;
+}
+
+/* Section cards (hourly + air) */
+.section-card {
+  background: #252d3d;
+  border-radius: 16px;
+  padding: 20px;
+}
+
+.section-label {
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  color: #6b7a99;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+/* Hourly row */
+.hourly-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.hour-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+}
+
+.hour-item .time { font-size: 12px; color: #8a95b0; }
+.hour-item .icon { font-size: 28px; }
+.hour-item .temp { font-size: 15px; font-weight: 600; }
+
+/* Air conditions */
+.air-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.air-header .section-label { margin: 0; }
+
+.see-more {
+  background: #3a7bd5;
+  border: none;
+  border-radius: 20px;
+  padding: 5px 14px;
+  color: #ffffff;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.air-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px 32px;
+}
+
+.air-item { display: flex; flex-direction: column; gap: 4px; }
+
+.air-item .air-label {
+  font-size: 12px;
+  color: #6b7a99;
+}
+
+.air-item .air-val {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+/* ============================================================
+   RIGHT PANEL — 7-day forecast
+   ============================================================ */
+.right-panel {
+  width: 270px;
+  background: #252d3d;
+  padding: 24px 20px;
+}
+
+.forecast-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #2e3848;
+}
+
+.forecast-item:last-child { border-bottom: none; }
+
+.forecast-item .day-name {
+  font-size: 14px;
+  color: #8a95b0;
+  width: 38px;
+}
+
+.forecast-item .f-icon  { font-size: 22px; }
+
+.forecast-item .f-condition {
+  flex: 1;
+  font-size: 13px;
+  color: #cccccc;
+  margin-left: 8px;
+}
+
+.forecast-item .f-temps { font-size: 13px; font-weight: 600; }
+.forecast-item .f-temps .lo { color: #6b7a99; font-weight: 400; }
+
+/* ============================================================
+   RESPONSIVE — mobile friendly
+   ============================================================ */
+@media (max-width: 780px) {
+  .app { flex-direction: column; }
+  .sidebar { flex-direction: row; width: 100%; padding: 12px 20px; gap: 20px; }
+  .right-panel { width: 100%; }
+}
